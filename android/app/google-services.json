@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1006517975815",
+    "firebase_url": "https://youlearnapp-517d5-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "youlearnapp-517d5",
+    "storage_bucket": "youlearnapp-517d5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006517975815:android:9506f64ce9f2f1ea5ce3a2",
+        "android_client_info": {
+          "package_name": "com.example.learnt_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtLqaRcccr0zITRwRy6RQrW6GNxPi5FC0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
