@@ -59,7 +59,13 @@ class TextBoxForm extends StatelessWidget {
                   : TextInputType.text),
       controller: controller,
       readOnly: readOnly ?? false,
+      style: TextStyle(
+        fontSize: MediaQuery.of(context).size.width * 0.03,
+      ),
       decoration: InputDecoration(
+        errorStyle: TextStyle(
+          fontSize: MediaQuery.of(context).size.width * 0.02,
+        ),
         suffixIcon: suffixIcon ?? const SizedBox(),
         prefixIcon: prefixIcon ?? const SizedBox(),
         labelText: labelText ?? 'الاسم الكامل',

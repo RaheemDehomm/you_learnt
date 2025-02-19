@@ -17,7 +17,7 @@ class QuestionsWidget extends StatelessWidget {
     return BlocBuilder<QuestionCubit, QuestionState>(
       builder: (context, state) {
         return Center(
-          child: questions.length > 0
+          child: questions.isNotEmpty
               ? Container(
                   margin: EdgeInsets.symmetric(horizontal: 20.w),
                   child: Column(
@@ -31,7 +31,7 @@ class QuestionsWidget extends StatelessWidget {
                         style: AppStyle.descriptionStyle.copyWith(
                           fontSize: MediaQuery.of(context).size.width > 600
                               ? MediaQuery.of(context).size.width * 0.02
-                              : MediaQuery.of(context).size.width * 0.02,
+                              : MediaQuery.of(context).size.width * 0.04,
                         ),
                       ),
                       SizedBox(height: 10.h),

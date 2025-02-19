@@ -218,107 +218,6 @@ class HomeWebView extends StatelessWidget {
               SizedBox(
                 height: screenHeight * 0.02,
               ),
-              // Container(
-              //   width: double.infinity,
-              //   color: kPrimaryColor,
-              //   padding: EdgeInsets.all(screenWidth * 0.02),
-              //   child: Column(
-              //     children: [
-              //       Text(
-              //         'الدورات',
-              //         style: TextStyle(
-              //           color: Colors.white,
-              //           fontSize: screenWidth * 0.02,
-              //           fontWeight: FontWeight.bold,
-              //           fontFamily: kFontFamily,
-              //         ),
-              //       ),
-              //       SizedBox(height: screenHeight * 0.02),
-              //       SizedBox(
-              //         height: screenWidth < 600
-              //             ? screenHeight * 0.26
-              //             : screenHeight * 0.3,
-              //         child: BlocBuilder<LearntCubit, LearntState>(
-              //           builder: (context, state) {
-              //             if (state is LearntLoadCourseFailure) {
-              //               return Text(
-              //                 state.message,
-              //                 style: TextStyle(
-              //                   color: Colors.white,
-              //                   fontSize: screenWidth * 0.02,
-              //                   fontWeight: FontWeight.bold,
-              //                   fontFamily: kFontFamily,
-              //                 ),
-              //               );
-              //             }
-              //             if (state is LearntLoadCourseSuccess) {
-              //               return ListView.builder(
-              //                 scrollDirection: Axis.horizontal,
-              //                 itemCount: state.courses.length,
-              //                 itemBuilder: (context, index) {
-              //                   return Padding(
-              //                     padding: EdgeInsets.symmetric(
-              //                         horizontal: screenWidth * 0.01),
-              //                     child: CoursesCardWidget(
-              //                       isPhone: false,
-              //                       courseName: state.courses[index].name,
-              //                       imageUrl: state.courses[index].image,
-              //                       price: state.courses[index].price,
-              //                       hours: state.courses[index].hours,
-              //                       description:
-              //                           state.courses[index].description,
-              //                       color: Colors.white,
-              //                       onTap: () {
-              //                         showDialog(
-              //                           context: context,
-              //                           builder: (context) {
-              //                             return CourseInfoDialog(
-              //                               extra: RegisterExtra(
-              //                                 subject:
-              //                                     state.courses[index].name,
-              //                                 section: state
-              //                                     .courses[index].sectionName,
-              //                               ),
-              //                             );
-              //                           },
-              //                         );
-              //                       },
-              //                       fontSize: screenWidth < 600
-              //                           ? screenHeight * 0.015
-              //                           : screenHeight * 0.03,
-              //                       fontSizedescription: screenWidth < 600
-              //                           ? screenHeight * 0.013
-              //                           : screenHeight * 0.02,
-              //                       titleColor: Colors.white,
-              //                       hieghtImage: screenWidth < 600
-              //                           ? screenHeight * 0.06
-              //                           : screenHeight * 0.08,
-              //                       iconSize: screenWidth < 600
-              //                           ? screenHeight * 0.02
-              //                           : screenHeight * 0.03,
-              //                       titleFontSize: screenWidth < 600
-              //                           ? screenHeight * 0.015
-              //                           : screenHeight * 0.02,
-              //                       isSmallScreen:
-              //                           screenWidth < 600 || screenWidth <= 1110
-              //                               ? true
-              //                               : false,
-              //                     ),
-              //                   );
-              //                 },
-              //               );
-              //             }
-              //             return const Center(
-              //               child: CircularProgressIndicator(
-              //                 color: Colors.white,
-              //               ),
-              //             );
-              //           },
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -365,7 +264,8 @@ class _ButtomWebViewState extends State<ButtomWebView> {
             widget.title ?? 'الدورات',
             style: TextStyle(
               color: isHovered ? Colors.white : Colors.grey[700],
-              fontSize: screenWidth * 0.02,
+              fontSize:
+                  screenWidth < 600 ? screenWidth * 0.04 : screenWidth * 0.02,
               fontWeight: FontWeight.bold,
               fontFamily: kFontFamily,
             ),

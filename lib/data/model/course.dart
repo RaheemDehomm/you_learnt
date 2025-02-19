@@ -1,5 +1,5 @@
 class Course {
-  final int id;
+  final int? id;
   final String name;
   final String description;
   String? image;
@@ -8,7 +8,7 @@ class Course {
   final String hours;
 
   Course({
-    required this.id,
+    this.id,
     required this.name,
     required this.description,
     this.image,
@@ -27,7 +27,7 @@ class Course {
       };
 
   factory Course.fromJson(Map<String, dynamic> json) => Course(
-        id: json['id'],
+        id: json['id'] ?? 0,
         name: json['name'],
         description: json['desc'],
         image: json['image'],

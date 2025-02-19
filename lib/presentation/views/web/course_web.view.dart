@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learnt_app/helper/class/register_extra.dart';
 import 'package:learnt_app/helper/style/app_style.dart';
 import 'package:learnt_app/presentation/widgets/course_card_widget.dart';
+import 'package:learnt_app/presentation/widgets/course_info_dialog.dart';
 import 'package:learnt_app/presentation/widgets/course_info_web_dialog.dart';
 
 import '../../../logic/learnt_cubit.dart';
@@ -17,10 +20,13 @@ class CourseWebView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<LearntCubit>();
+    log('cubit :${cubit.getSectionCourse()}');
+    log(section!);
 
     cubit.fetchAllCourses(
-        section:
-            section == null || section == '' ? cubit.sectionName : section);
+        section: section == null || section == ''
+            ? cubit.getSectionCourse()
+            : section);
 
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
@@ -118,16 +124,34 @@ class CourseWebView extends StatelessWidget {
                                   showDialog(
                                     context: context,
                                     builder: (context) {
-                                      return CourseInfoWebDialog(
-                                        extra: RegisterExtra(
-                                          subject: state.courses[index].name,
-                                          section:
-                                              state.courses[index].sectionName,
-                                        ),
-                                        course: state.courses[index],
-                                      );
+                                      return screenWidth >= 600
+                                          ? CourseInfoWebDialog(
+                                              extra: RegisterExtra(
+                                                subject:
+                                                    state.courses[index].name,
+                                                section: state
+                                                    .courses[index].sectionName,
+                                              ),
+                                              course: state.courses[index],
+                                            )
+                                          : CourseInfoDialog(
+                                              extra: RegisterExtra(
+                                                subject:
+                                                    state.courses[index].name,
+                                                section: state
+                                                    .courses[index].sectionName,
+                                              ),
+                                              course: state.courses[index],
+                                            );
                                     },
-                                  );
+                                  ).then((_) {
+                                    // ✅ إعادة تحميل الكورسات بعد إغلاق الـ Dialog
+                                    cubit.fetchAllCourses(
+                                        section:
+                                            section == null || section == ''
+                                                ? cubit.getSectionCourse()
+                                                : section);
+                                  });
                                 },
                                 fontSize: fontSize,
                                 fontSizedescription: fontSizeDescription,

@@ -68,6 +68,10 @@ class LearntCubit extends Cubit<LearntState> {
     return LocalStorge.getValue('section');
   }
 
+  String getSectionCourse() {
+    return LocalStorge.getValue('sectionCourse');
+  }
+
   Future<List<Section>> fetchSections() async {
     try {
       emit(LearntLoading());
@@ -86,23 +90,28 @@ class LearntCubit extends Cubit<LearntState> {
 
   Future<List<Course>> fetchAllCourses({String? section}) async {
     try {
+      LocalStorge.setValue('sectionCourse', section.toString());
       emit(LearntLoading());
-      var response;
-      if (section == null) {
-        response = await supabase.from('course').select();
+
+      if (section != null) {
+        var response =
+            await supabase.from('course').select().eq('sectionName', section);
+        final courses = (response as List<dynamic>)
+            .map((e) => Course.fromJson(e as Map<String, dynamic>))
+            .toList();
+
+        log('Fetch operation completed. done');
+
+        emit(LearntLoadCourseSuccess(courses));
+
+        coursesBySection.addAll(courses);
+
+        return courses;
       } else {
-        response =
-            await supabase.from('course').select('').eq('sectionName', section);
+        log(coursesBySection.length.toString());
+        emit(LearntLoadCourseSuccess(coursesBySection));
+        return coursesBySection;
       }
-
-      final courses = (response as List<dynamic>)
-          .map((e) => Course.fromJson(e as Map<String, dynamic>))
-          .toList();
-
-      log('Fetch operation completed.');
-      emit(LearntLoadCourseSuccess(courses));
-      coursesBySection.addAll(courses);
-      return courses;
     } catch (e) {
       log("❌ Error fetching courses: $e");
       emit(LearntLoadCourseFailure(e.toString()));

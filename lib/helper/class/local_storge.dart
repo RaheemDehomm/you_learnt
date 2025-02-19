@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:learnt_app/data/model/course.dart';
 import 'package:learnt_app/data/model/section.dart';
 import 'package:universal_html/html.dart';
 
@@ -20,6 +21,22 @@ class LocalStorge {
     if (sectionsJson != null) {
       List<dynamic> decoded = jsonDecode(sectionsJson);
       return decoded.map((e) => Section.fromJson(e)).toList();
+    }
+    return [];
+  }
+
+  static void setCourses(String key, List<Course> courses) {
+    String coursesJson = jsonEncode(courses.map((e) => e.toJson()).toList());
+    storage[key] = coursesJson;
+  }
+
+  static List<Course> getCourses(String key) {
+    String? coursesJson = storage[key];
+    if (coursesJson != null) {
+      List<dynamic> decoded = jsonDecode(coursesJson);
+      return decoded
+          .map((e) => Course.fromJson(e as Map<String, dynamic>))
+          .toList();
     }
     return [];
   }

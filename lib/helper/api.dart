@@ -15,14 +15,14 @@ class ExamService {
   Future<List<Question>> generateExamQuestions(String language) async {
     try {
       final userPrompt = """
-        قم بإنشاء 7 أسئلة اختيار من متعدد لاختبار تحديد المستوى في لغة $language، بناءً على منهج English Hubs.
+        قم بإنشاء 60 أسئلة اختيار من متعدد لاختبار تحديد المستوى في لغة $language، بناءً على منهج English Hubs.
         يجب أن تكون الأسئلة موزعة على المستويات التالية:
-        - Basic (1 سؤال)
-        - Beginner (1 سؤال)
-        - Elementary (1 سؤال)
-        - Pre-Intermediate (1 سؤال)
-        - Intermediate (1 سؤال)
-        - Advanced (1 سؤال)
+        - Basic (10 سؤال)
+        - Beginner (10 سؤال)
+        - Elementary (10 سؤال)
+        - Pre-Intermediate (10 سؤال)
+        - Intermediate (10 سؤال)
+        - Advanced (10 سؤال)
 
         لكل سؤال، أضف 4 اختيارات، واحد فقط منها صحيح.
         أرسل النتائج في تنسيق JSON صالح كالتالي:

@@ -19,7 +19,7 @@ class AnswerWidget extends StatelessWidget {
           color: Colors.black,
           fontSize: MediaQuery.of(context).size.width > 600
               ? MediaQuery.of(context).size.width * 0.03
-              : MediaQuery.of(context).size.width * 0.02,
+              : MediaQuery.of(context).size.width * 0.04,
         ),
       ),
     );

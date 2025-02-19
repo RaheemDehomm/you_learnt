@@ -12,6 +12,7 @@ import 'package:learnt_app/logic/learnt_cubit.dart';
 import 'package:learnt_app/presentation/widgets/arrow_back_widget.dart';
 import 'package:learnt_app/presentation/widgets/dailog_widget.dart';
 import 'package:learnt_app/presentation/widgets/text_from_feild.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key, this.subject, this.section});
@@ -337,6 +338,7 @@ class _RegisterViewState extends State<RegisterView> {
                                       });
                                 }
                               },
+                              //
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
@@ -347,7 +349,46 @@ class _RegisterViewState extends State<RegisterView> {
                                 ),
                                 child: Center(
                                   child: Text(
-                                    'تسجيل',
+                                    'تسجيل مبدئي',
+                                    style: AppStyle.titleStyle.copyWith(
+                                      color: Colors.white,
+                                      fontSize: screenWidth < 600
+                                          ? screenHeight * 0.02
+                                          : screenHeight * 0.04,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: screenHeight * 0.04,
+                            ),
+                            GestureDetector(
+                              onTap: () async {
+                                if (await canLaunchUrl(Uri.parse(
+                                    'https://youlearnt.com/en/payment-to-international-college-of-languages'))) {
+                                  await launchUrl(
+                                    Uri.parse(
+                                        'https://youlearnt.com/en/payment-to-international-college-of-languages'),
+                                  );
+                                } else {
+                                  const DailogWidget(
+                                    title: 'حدث خطأ ',
+                                    isSuccess: false,
+                                  );
+                                }
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(16.r),
+                                  ),
+                                  color: kPrimaryColor,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'تأكيد التسجيل',
                                     style: AppStyle.titleStyle.copyWith(
                                       color: Colors.white,
                                       fontSize: screenWidth < 600
